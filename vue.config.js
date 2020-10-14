@@ -2,9 +2,7 @@ module.exports = {
   css: {
     modules: false,
     loaderOptions: {
-      sass: {
-
-      },
+      sass: {},
       less: {
         lessOptions: {
           javascriptEnabled: true

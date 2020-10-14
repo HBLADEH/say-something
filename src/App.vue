@@ -1,17 +1,21 @@
 <template>
-  <div></div>
+  <div id="app">
+    <Index></Index>
+  </div>
 </template>
 
 <script>
-impor
+import Index from './pages/Index'
 export default {
   name: 'App',
-  components: {}
+  components: {
+    Index
+  }
 }
 </script>
 
 <style>
 #app {
-  background-color: rgb(246, 246, 246);
+  background-color: #f6f6f6;
 }
 </style>

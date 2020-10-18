@@ -1,11 +1,16 @@
 import {
   Button,
-  Input
+  Input,
+  Avatar,
+  Card
 } from 'ant-design-vue'
 const ant = {
   install(Vue) {
     Vue.component(Button.name, Button)
     Vue.component(Input.name, Input)
+    Vue.component(Input.Search.name, Input.Search, )
+    Vue.component(Avatar.name, Avatar)
+    Vue.component(Card.name, Card)
   },
 }
 export default ant

@@ -19,6 +19,9 @@
       <span class="IndexList-actionFooter">
         <MessageOutlined />&nbsp;收藏
       </span>
+      <span class="IndexList-actionFooter">
+        <MessageOutlined />&nbsp;收藏
+      </span>
       <span class="IndexList-createTime">
         <ClockCircleOutlined />&nbsp;2020-02-13
       </span>
@@ -53,7 +56,6 @@ export default {
   }
 
   .IndexList-createTime {
-    font-size: 12px;
     float: right;
   }
 }

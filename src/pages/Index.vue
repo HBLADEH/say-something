@@ -1,44 +1,30 @@
 <template>
   <div class="IndexList-container">
-    <a-card title="这是一个标题" :bordered="false" style="width: 600px">
-      <p>内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1</p>
-
-      <span>
-        <LikeOutlined />&nbsp;100
-        &nbsp;
-        <DislikeOutlined />&nbsp;10
-
-      </span>
-
-      <span class="IndexList-actionFooter">
-        <MessageOutlined />&nbsp;300&nbsp;条评论
-      </span>
-      <span class="IndexList-actionFooter">
-        <MessageOutlined />&nbsp;分享
-      </span>
-      <span class="IndexList-actionFooter">
-        <MessageOutlined />&nbsp;收藏
-      </span>
-      <span class="IndexList-actionFooter">
-        <MessageOutlined />&nbsp;收藏
-      </span>
-      <span class="IndexList-createTime">
-        <ClockCircleOutlined />&nbsp;2020-02-13
-      </span>
-
-    </a-card>
+    <div class="IndexList-main">
+      <ListItem />
+      <ListItem />
+      <ListItem />
+      <ListItem />
+      <ListItem />
+      <ListItem />
+    </div>
+    <div class="Index-rightBar">
+      <a-card title="这是一个侧边栏" :bordered="false" style="width: 300px">
+        <p>内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1</p>
+      </a-card>
+    </div>
   </div>
+
 </template>
 
 <script>
-import { MessageOutlined, ClockCircleOutlined, LikeOutlined, DislikeOutlined } from "@ant-design/icons-vue";
+import ListItem from '../components/index/ListItem'
+
 export default {
   name: 'Index',
   components: {
-    MessageOutlined,
-    ClockCircleOutlined,
-    LikeOutlined,
-    DislikeOutlined
+    ListItem,
+
   }
 }
 </script>
@@ -51,6 +37,10 @@ export default {
   padding: 0 16px;
   margin: 10px auto;
 
+  .IndexList-main {
+    margin-right: 10px;
+  }
+
   .IndexList-actionFooter {
     margin-left: 30px;
   }
@@ -58,5 +48,11 @@ export default {
   .IndexList-createTime {
     float: right;
   }
+}
+
+.Index-rightBar {
+  -webkit-box-flex: 1;
+  flex: 1 1;
+  font-size: 14px;
 }
 </style>

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import NavBar from './components/index/NavBar'
+import NavBar from './components/NavBar'
 import Index from './pages/Index'
 export default {
   name: 'App',

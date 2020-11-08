@@ -16,7 +16,8 @@
         <InputSearch class="input-search" v-model:value="search_val" placeholder="输入想要搜索的内容" enter-button @search="onSearch" />
 
         <!-- 用户信息 -->
-        <div class="AppHeader-userInfo">
+        <div class="AppHeader-userInfo" v-if="is_login">
+
           <ul class="AppHeader-tabs">
             <li class="AppHeader-tab">
               <CommentOutlined style="font-size: 27px; color: #76839B;" />
@@ -30,9 +31,19 @@
               <UserOutlined />
             </template>
           </a-avatar>
+
+        </div>
+        <div class="AppHeader-userInfo" v-else>
+          <a-button-group>
+            <a-button type="primary">
+              <UserOutlined /> 登录
+            </a-button>
+            <a-button>
+              <EditOutlined /> 注册
+            </a-button>
+          </a-button-group>
         </div>
       </div>
-
     </header>
   </div>
 </template>
@@ -42,17 +53,18 @@ import {
   ref
 } from 'vue';
 // 菜单栏数据 
-import menuData from '../../assets/resource/navbar'
+import menuData from '../assets/resource/navbar'
 
 // 插件
 import InputSearch from "ant-design-vue/lib/input/Search";
-import { UserOutlined, CommentOutlined, BellOutlined } from "@ant-design/icons-vue";
+import { UserOutlined, CommentOutlined, BellOutlined, EditOutlined } from "@ant-design/icons-vue";
 export default {
   setup() {
     let menu_data = ref(menuData);
 
     let check_index = ref(0) // 默认
     let search_val = ref("")
+    let is_login = ref(false)
     const toggle = (index) => {
       check_index.value = index
     }
@@ -62,6 +74,7 @@ export default {
     }
     return {
       menu_data,
+      is_login,
       check_index,
       search_val,
       toggle,
@@ -72,7 +85,8 @@ export default {
     InputSearch,
     UserOutlined,
     CommentOutlined,
-    BellOutlined
+    BellOutlined,
+    EditOutlined,
   }
 }
 </script>

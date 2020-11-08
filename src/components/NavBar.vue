@@ -59,6 +59,7 @@ import menuData from '../assets/resource/navbar'
 import InputSearch from "ant-design-vue/lib/input/Search";
 import { UserOutlined, CommentOutlined, BellOutlined, EditOutlined } from "@ant-design/icons-vue";
 export default {
+  name: 'NavBar',
   setup() {
     let menu_data = ref(menuData);
 

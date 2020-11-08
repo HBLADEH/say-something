@@ -1,5 +1,6 @@
 <template>
   <div class="IndexList-container">
+    <LoginAndRegist />
     <div class="IndexList-main">
       <ListItem />
       <ListItem />
@@ -19,12 +20,12 @@
 
 <script>
 import ListItem from '../components/index/ListItem'
-
+import LoginAndRegist from '../components/login/LoginAndRegister'
 export default {
   name: 'Index',
   components: {
     ListItem,
-
+    LoginAndRegist
   }
 }
 </script>

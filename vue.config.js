@@ -1,6 +1,5 @@
 module.exports = {
   css: {
-    modules: false,
     loaderOptions: {
       sass: {},
       less: {

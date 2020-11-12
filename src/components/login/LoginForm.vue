@@ -23,7 +23,7 @@
 
       </div>
       <div class="login-form-item">
-        <a-button type="primary" block>
+        <a-button type="primary" @click="doLogin" block>
           <template #icon>
             <LoginOutlined />
           </template>登录
@@ -37,6 +37,7 @@
 import { reactive } from 'vue'
 import { Form, Input, Checkbox } from 'ant-design-vue'
 import { UserOutlined, LockOutlined, LoginOutlined } from "@ant-design/icons-vue";
+import { getJwt } from "../../api/login"
 export default {
   name: 'LoginForm',
   setup() {
@@ -47,10 +48,18 @@ export default {
       password: "",
       rememberme: false,
     })
+
+    const doLogin = async () => {
+      const response = await getJwt(loginForm)
+
+      // console.log(response);
+      window.localStorage.setItem("JWTHeaderName", response.data.data)
+    }
     return {
       loginForm,
       labelCol,
-      wrapperCol
+      wrapperCol,
+      doLogin
     }
   },
   components: {

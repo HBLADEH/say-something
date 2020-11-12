@@ -24,7 +24,7 @@
       </div>
 
       <div class="register-form-item">
-        <a-button type="primary" block>
+        <a-button type="primary" @click="doTest" block>
           <template #icon>
             <FormOutlined />
           </template>注册
@@ -37,6 +37,8 @@
 import { reactive } from 'vue'
 import { Form, Input } from 'ant-design-vue'
 import { UserOutlined, LockOutlined, FormOutlined } from "@ant-design/icons-vue";
+import { test } from "../../api/login"
+
 export default {
   name: 'RegisterForm',
   setup() {
@@ -48,10 +50,14 @@ export default {
       passwordCheck: "",
       rememberme: false,
     })
+    const doTest = () => {
+      test()
+    }
     return {
       registerForm,
       labelCol,
-      wrapperCol
+      wrapperCol,
+      doTest
     }
   },
   components: {

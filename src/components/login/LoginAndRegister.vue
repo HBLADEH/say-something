@@ -1,47 +1,58 @@
 <template>
   <transition name="fade">
-    <div class="login-mask" v-if="mask_active"></div>
+    <div class="login-mask" v-if="mask_active" @click="mask_active = false"></div>
   </transition>
-
-  <div class="LoginRegistPage">
-    <!-- <a-button @click="mask_active = !mask_active">测试</a-button> -->
-    <a-tabs>
-      <a-tab-pane key="1" tab="Tab 1">
-        Content of tab 1
+  <div class="LoginRegistPage" v-if="mask_active">
+    <a-tabs v-model:activeKey="tab_index" size="large">
+      <a-tab-pane key="1" tab="登录">
+        <LoginForm />
       </a-tab-pane>
-      <a-tab-pane key="2" tab="Tab 2">
-        Content of tab 2
+      <a-tab-pane key="2" tab="注册" force-render>
+        <RegisterForm />
       </a-tab-pane>
-      <a-tab-pane key="3" tab="Tab 3">
-        Content of tab 3
-      </a-tab-pane>
-
     </a-tabs>
   </div>
-
 </template>
 <script>
 import { ref } from 'vue'
+import { Tabs } from 'ant-design-vue'
+import LoginForm from './LoginForm'
+import RegisterForm from './RegisterForm'
 export default {
   name: 'LoginAndRegister',
+
   setup() {
     let mask_active = ref(false);
+    let tab_index = ref("1");
     const doClick = () => {
-      console.log(mask_active.value);
+      console.log(123);
     }
+
     return {
       doClick,
-      mask_active
+      mask_active,
+      tab_index,
     }
+  },
+  components: {
+    ATabs: Tabs,
+    ATabPane: Tabs.TabPane,
+    LoginForm,
+    RegisterForm
   }
 }
 </script>
 <style lang="scss">
+.ant-tabs {
+  height: auto;
+  width: 100%;
+}
 .LoginRegistPage {
   width: 400px;
   height: 300px;
   background: #fff;
   z-index: 1000;
+  text-align: center;
 
   /* 绝对水平居中对齐 */
   margin: auto;

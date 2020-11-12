@@ -35,10 +35,10 @@
         </div>
         <div class="AppHeader-userInfo" v-else>
           <a-button-group>
-            <a-button type="primary">
+            <a-button type="primary" @click="showLoginAndRegister('1')">
               <UserOutlined /> 登录
             </a-button>
-            <a-button>
+            <a-button @click="showLoginAndRegister('2')">
               <EditOutlined /> 注册
             </a-button>
           </a-button-group>
@@ -46,18 +46,19 @@
       </div>
     </header>
   </div>
+  <LoginAndRegist ref="loginAndRegist" />
 </template>
 
 <script>
-import {
-  ref
-} from 'vue';
+import { ref } from 'vue';
 // 菜单栏数据 
 import menuData from '../assets/resource/navbar'
 
 // 插件
 import InputSearch from "ant-design-vue/lib/input/Search";
 import { UserOutlined, CommentOutlined, BellOutlined, EditOutlined } from "@ant-design/icons-vue";
+import LoginAndRegist from '../components/login/LoginAndRegister'
+
 export default {
   name: 'NavBar',
   setup() {
@@ -66,6 +67,8 @@ export default {
     let check_index = ref(0) // 默认
     let search_val = ref("")
     let is_login = ref(false)
+    let loginAndRegist = ref(null);
+
     const toggle = (index) => {
       check_index.value = index
     }
@@ -73,17 +76,26 @@ export default {
     const onSearch = (value) => {
       console.log(value)
     }
+    const showLoginAndRegister = (index) => {
+      // loginAndRegist.value.setTabIndex(type)
+      loginAndRegist.value.tab_index = index
+
+      loginAndRegist.value.mask_active = !loginAndRegist.value.mask_active
+    }
     return {
       menu_data,
       is_login,
       check_index,
       search_val,
       toggle,
-      onSearch
+      onSearch,
+      showLoginAndRegister,
+      loginAndRegist
     }
   },
   components: {
     InputSearch,
+    LoginAndRegist,
     UserOutlined,
     CommentOutlined,
     BellOutlined,

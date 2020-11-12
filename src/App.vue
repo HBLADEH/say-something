@@ -18,9 +18,14 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #f6f6f6;
+}
 #app {
   height: auto;
   width: 100%;
-  background-color: #f6f6f6;
+}
+a {
+  color: #1890ff;
 }
 </style>

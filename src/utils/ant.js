@@ -3,7 +3,6 @@ import {
   Input,
   Avatar,
   Card,
-  Tabs
 } from 'ant-design-vue'
 const ant = {
   install(Vue) {
@@ -13,7 +12,6 @@ const ant = {
     Vue.component(Input.Search.name, Input.Search)
     Vue.component(Avatar.name, Avatar)
     Vue.component(Card.name, Card)
-    Vue.component(Tabs.name, Tabs)
   },
 }
 export default ant

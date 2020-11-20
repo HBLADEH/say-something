@@ -52,10 +52,9 @@ export default {
     const doLogin = async () => {
       const response = await getJwt(loginForm)
 
-      let res = response.data
-      if (res.code == 200) {
+      if (response.code == 200) {
         cxt.emit('set-mask', true)
-        window.localStorage.setItem("JWTHeaderName", response.data.data)
+        window.localStorage.setItem("JWTHeaderName", response.data)
       }
     }
     return {

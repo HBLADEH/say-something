@@ -1,12 +1,9 @@
 <template>
   <div class="IndexList-container">
     <div class="IndexList-main">
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
+      <div v-for="item in articleMain" :key="item.id">
+        <ListItem />
+      </div>
     </div>
     <div class="Index-rightBar">
       <a-card title="这是一个侧边栏" :bordered="false" style="width: 300px">
@@ -18,9 +15,26 @@
 </template>
 
 <script>
+import { ref } from "vue"
 import ListItem from '../components/index/ListItem'
+import { getArticleMain } from "../api/article"
 export default {
   name: 'Index',
+  setup() {
+
+    let articleMain = ref([]);
+    const doArticleMain = async () => {
+      const response = await getArticleMain()
+      articleMain.value = response.data
+    }
+    return {
+      articleMain,
+      doArticleMain
+    }
+  },
+  created() {
+    this.doArticleMain()
+  },
   components: {
     ListItem,
   }

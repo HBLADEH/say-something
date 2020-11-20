@@ -28,7 +28,7 @@ service.interceptors.response.use(response => {
     return Promise.reject(new Error(res.message || "Error"))
   } else {
     message.success(res.message)
-    return response;
+    return res;
   }
 }, error => {
   // Do something with response error

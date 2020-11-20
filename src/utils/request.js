@@ -25,7 +25,7 @@ service.interceptors.response.use(response => {
   console.log(res);
   if (res.code != 200) {
     message.error(res.message)
-    // return Promise.reject(new Error(res.message || "Error"))
+    return Promise.reject(new Error(res.message || "Error"))
   } else {
     message.success(res.message)
     return response;

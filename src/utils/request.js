@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { message } from 'ant-design-vue'
 let baseURL = "/api/"
 const service = axios.create({
   baseURL: baseURL,
@@ -23,8 +24,10 @@ service.interceptors.response.use(response => {
   const res = response.data
   console.log(res);
   if (res.code != 200) {
-    return Promise.reject(new Error(res.message || "Error"))
+    message.error(res.message)
+    // return Promise.reject(new Error(res.message || "Error"))
   } else {
+    message.success(res.message)
     return response;
   }
 }, error => {

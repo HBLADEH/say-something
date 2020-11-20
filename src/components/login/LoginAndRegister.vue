@@ -5,7 +5,7 @@
   <div class="LoginRegistPage" v-if="mask_active">
     <a-tabs v-model:activeKey="tab_index" size="large">
       <a-tab-pane key="1" tab="登录">
-        <LoginForm />
+        <LoginForm @set-mask="loginSuccess" />
       </a-tab-pane>
       <a-tab-pane key="2" tab="注册" force-render>
         <RegisterForm />
@@ -21,17 +21,24 @@ import RegisterForm from './RegisterForm'
 export default {
   name: 'LoginAndRegister',
 
-  setup() {
+  setup(props, cxt) {
     let mask_active = ref(false);
     let tab_index = ref("1");
-    const doClick = () => {
+
+    const loginSuccess = () => {
       console.log(123);
+      changeMask(false)
+      cxt.emit('is-login', true)
+    }
+    const changeMask = (state) => {
+      mask_active.value = state
     }
 
     return {
-      doClick,
+      changeMask,
       mask_active,
       tab_index,
+      loginSuccess
     }
   },
   components: {
@@ -53,6 +60,7 @@ export default {
   background: #fff;
   z-index: 1000;
   text-align: center;
+  border-radius: 5px;
 
   /* 绝对水平居中对齐 */
   margin: auto;
@@ -61,7 +69,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  box-shadow: 0 1px 3px rgba(18, 18, 18, 0.1);
+  // box-shadow: 0 1px 3px rgba(18, 18, 18, 0.1);
 }
 .login-mask {
   position: fixed;

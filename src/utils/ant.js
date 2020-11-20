@@ -3,6 +3,7 @@ import {
   Input,
   Avatar,
   Card,
+
 } from 'ant-design-vue'
 const ant = {
   install(Vue) {

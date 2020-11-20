@@ -40,7 +40,7 @@ import { UserOutlined, LockOutlined, LoginOutlined } from "@ant-design/icons-vue
 import { getJwt } from "../../api/login"
 export default {
   name: 'LoginForm',
-  setup() {
+  setup(props, cxt) {
     let labelCol = { span: 4 }
     let wrapperCol = { span: 14 }
     const loginForm = reactive({
@@ -52,8 +52,11 @@ export default {
     const doLogin = async () => {
       const response = await getJwt(loginForm)
 
-      // console.log(response);
-      window.localStorage.setItem("JWTHeaderName", response.data.data)
+      let res = response.data
+      if (res.code == 200) {
+        cxt.emit('set-mask', true)
+        window.localStorage.setItem("JWTHeaderName", response.data.data)
+      }
     }
     return {
       loginForm,
@@ -74,7 +77,7 @@ export default {
 </script>
 <style lang="scss">
 .login-form {
-  padding-top: 3%;
+  padding-top: 2%;
   height: 100%;
   width: 100%;
 }

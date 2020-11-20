@@ -26,11 +26,21 @@
               <BellOutlined style="font-size: 27px; color: #76839B;" />
             </li>
           </ul>
-          <a-avatar shape="square" :size="32" style="backgroundColor: #76839B">
-            <template v-slot:icon>
-              <UserOutlined />
+
+          <a-dropdown>
+            <a-avatar shape="square" :size="32" @click="e => e.preventDefault()" style="backgroundColor: #76839B">
+              <template v-slot:icon>
+                <UserOutlined />
+              </template>
+            </a-avatar>
+            <template #overlay>
+              <a-menu>
+
+                <a-menu-item><a href="javascript:;" @click="logOut">退出登录</a></a-menu-item>
+
+              </a-menu>
             </template>
-          </a-avatar>
+          </a-dropdown>
 
         </div>
         <div class="AppHeader-userInfo" v-else>
@@ -46,7 +56,7 @@
       </div>
     </header>
   </div>
-  <LoginAndRegist ref="loginAndRegist" />
+  <LoginAndRegist @is-login="isLogin" ref="loginAndRegist" />
 </template>
 
 <script>
@@ -56,6 +66,7 @@ import menuData from '../assets/resource/navbar'
 
 // 插件
 import InputSearch from "ant-design-vue/lib/input/Search";
+import { Dropdown, Menu, } from 'ant-design-vue'
 import { UserOutlined, CommentOutlined, BellOutlined, EditOutlined } from "@ant-design/icons-vue";
 import LoginAndRegist from '../components/login/LoginAndRegister'
 
@@ -79,8 +90,23 @@ export default {
     const showLoginAndRegister = (index) => {
       // loginAndRegist.value.setTabIndex(type)
       loginAndRegist.value.tab_index = index
-
       loginAndRegist.value.mask_active = !loginAndRegist.value.mask_active
+    }
+
+    const logOut = () => {
+      window.localStorage.removeItem("JWTHeaderName")
+      is_login.value = false
+    }
+
+    const isLogin = (state) => {
+      // 判断登录是否成功
+      is_login.value = state
+      // if (state) {
+      //   // 显示登录成功的用户区域
+      //   is_login.value = true
+      // } else {
+      //   // 显示登录注册页面
+      // }
     }
     return {
       menu_data,
@@ -90,7 +116,9 @@ export default {
       toggle,
       onSearch,
       showLoginAndRegister,
-      loginAndRegist
+      loginAndRegist,
+      logOut,
+      isLogin
     }
   },
   components: {
@@ -100,6 +128,9 @@ export default {
     CommentOutlined,
     BellOutlined,
     EditOutlined,
+    ADropdown: Dropdown,
+    AMenu: Menu,
+    AMenuItem: Menu.Item,
   }
 }
 </script>

@@ -1,9 +1,11 @@
 <template>
   <div class="IndexList-container">
     <div class="IndexList-main">
-      <div v-for="item in articleMain" :key="item.id">
-        <ListItem />
-      </div>
+      <a-skeleton :loading="loading">
+        <div v-for="item in articleMain" :key="item.id">
+          <ListItem :articleData="item" />
+        </div>
+      </a-skeleton>
     </div>
     <div class="Index-rightBar">
       <a-card title="这是一个侧边栏" :bordered="false" style="width: 300px">
@@ -16,6 +18,7 @@
 
 <script>
 import { ref } from "vue"
+import { Skeleton } from 'ant-design-vue'
 import ListItem from '../components/index/ListItem'
 import { getArticleMain } from "../api/article"
 export default {
@@ -23,13 +26,17 @@ export default {
   setup() {
 
     let articleMain = ref([]);
+
+    let loading = ref(false)
+
     const doArticleMain = async () => {
       const response = await getArticleMain()
       articleMain.value = response.data
     }
     return {
       articleMain,
-      doArticleMain
+      doArticleMain,
+      loading
     }
   },
   created() {
@@ -37,6 +44,7 @@ export default {
   },
   components: {
     ListItem,
+    ASkeleton: Skeleton
   }
 }
 </script>

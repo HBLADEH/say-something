@@ -1,6 +1,6 @@
 <template>
-  <a-card title="这是一个标题" :bordered="false" style="width: 690px;margin-bottom: 10px;">
-    <p>内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1内容1</p>
+  <a-card :title="article.title" :bordered="false" style="width: 690px;margin-bottom: 10px;">
+    <p>{{article.introduction}}</p>
     <span style="margin-right: 20px;">
       <a-button-group>
         <a-button :type="isLike ? 'primary': 'default'" @click="doLikeOrDisLike('like')">
@@ -31,7 +31,7 @@
       </a>
     </span>
     <span class="IndexList-createTime">
-      <ClockCircleOutlined />&nbsp;2020-02-13
+      <ClockCircleOutlined />&nbsp;{{article.newsTime}}
     </span>
     <transition name="fade">
       <Comment v-if="showComment" />
@@ -44,12 +44,14 @@ import { MessageOutlined, ClockCircleOutlined, LikeOutlined, DislikeOutlined, Sh
 import Comment from '../util/Comment'
 export default {
   name: 'ListItem',
-
-  setup() {
-
+  props: [
+    "articleData"
+  ],
+  setup(props) {
     let isLike = ref(false)
     let isDisLike = ref(false)
     let showComment = ref(false)
+    const article = reactive(props.articleData)
     const itemData = reactive({
       like: 10,
       disLike: 10
@@ -86,7 +88,8 @@ export default {
       isLike,
       isDisLike,
       doLikeOrDisLike,
-      showComment
+      showComment,
+      article
     }
   },
   components: {

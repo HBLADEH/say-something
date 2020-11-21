@@ -22,7 +22,7 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(response => {
   // Do something before response is sent
   const res = response.data
-  console.log(res);
+  // console.log(res);
   if (res.code != 200) {
     message.error(res.message)
     return Promise.reject(new Error(res.message || "Error"))

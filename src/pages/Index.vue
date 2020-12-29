@@ -30,8 +30,9 @@ export default {
     let loading = ref(false)
 
     const doArticleMain = async () => {
-      const response = await getArticleMain()
-      articleMain.value = response.data
+      const response = await getArticleMain(1, 3)
+      articleMain.value = response.data.records
+      console.log(response.data.records);
     }
     return {
       articleMain,
